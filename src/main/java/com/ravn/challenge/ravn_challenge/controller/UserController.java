@@ -16,35 +16,34 @@ import com.ravn.challenge.ravn_challenge.service.impl.JwtService;
 @RequestMapping("/auth")
 @RestController
 public class UserController {
-	
-	
-private final JwtService jwtService;
-    
-    private final AuthenticationService authenticationService;
 
-    public UserController(JwtService jwtService, AuthenticationService authenticationService) {
-        this.jwtService = jwtService;
-        this.authenticationService = authenticationService;
-    }
+	private final JwtService jwtService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
-        User registeredUser = authenticationService.signup(registerUserDto);
+	private final AuthenticationService authenticationService;
 
-        return ResponseEntity.ok(registeredUser);
-    }
+	public UserController(JwtService jwtService, AuthenticationService authenticationService) {
+		this.jwtService = jwtService;
+		this.authenticationService = authenticationService;
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        User authenticatedUser = authenticationService.authenticate(loginUserDto);
+	@PostMapping("/signup")
+	public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+		User registeredUser = authenticationService.signup(registerUserDto);
 
-        String jwtToken = jwtService.generateToken(authenticatedUser);
+		return ResponseEntity.ok(registeredUser);
+	}
 
-        LoginResponseDTO loginResponse = new LoginResponseDTO();
-        loginResponse.setToken(jwtToken);
-        loginResponse.setExpiresIn(jwtService.getExpirationTime());        
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponseDTO> authenticate(@RequestBody LoginUserDto loginUserDto) {
+		User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
-        return ResponseEntity.ok(loginResponse);
-    }
+		String jwtToken = jwtService.generateToken(authenticatedUser);
+
+		LoginResponseDTO loginResponse = new LoginResponseDTO();
+		loginResponse.setToken(jwtToken);
+		loginResponse.setExpiresIn(jwtService.getExpirationTime());
+
+		return ResponseEntity.ok(loginResponse);
+	}
 
 }

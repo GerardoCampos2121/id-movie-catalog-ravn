@@ -1,35 +1,42 @@
 package com.ravn.challenge.ravn_challenge.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.ravn.challenge.ravn_challenge.dto.MovieCategoryDTO;
+import com.ravn.challenge.ravn_challenge.entities.MovieCategory;
 import com.ravn.challenge.ravn_challenge.entities.User;
-import com.ravn.challenge.ravn_challenge.service.impl.UserServiceImpl;
+import com.ravn.challenge.ravn_challenge.service.impl.AuthenticationService;
+import com.ravn.challenge.ravn_challenge.service.impl.MovieCategoryService;
+import lombok.extern.slf4j.Slf4j;
 
+@RequestMapping("/movie")
 @RestController
-public class MoviesController {	
-	
-	private UserServiceImpl userService;
-	
-	public MoviesController(UserServiceImpl userService) {
-		this.userService = userService;
-	}
-	
-	@GetMapping("/greeting")
-	public String welcome(@RequestParam(value = "name", defaultValue = "World") String name) {		
-		return String.format("Hello, your pass encoded is  %s ", userService.encodePass(name)); 
-	}
-	
-	/*@GetMapping("allusers")
-    public ResponseEntity<List<User>> allUsers() {
-        List <User> users = userService.allUsers();
+@Slf4j
+public class MoviesController {
 
-        return ResponseEntity.ok(users);
-    }*/
-	
+	private final MovieCategoryService movieCatService;
+
+	private final AuthenticationService authenticationService;
+
+	public MoviesController(MovieCategoryService movieCatService, AuthenticationService authenticationService) {
+		this.movieCatService = movieCatService;
+		this.authenticationService = authenticationService;
+	}
+
+	@PostMapping("/moviecategory")
+	public ResponseEntity<MovieCategory> registerMovieCat(@RequestBody MovieCategoryDTO input) {
+		
+		if(authenticationService.checkIfUserIsAdmin()) {
+			MovieCategory saveMovCat = movieCatService.saveOnDB(input);
+			return ResponseEntity.ok(saveMovCat);
+		}else {
+			return ResponseEntity.status(403).body(null);
+		}
+	}
+
 }

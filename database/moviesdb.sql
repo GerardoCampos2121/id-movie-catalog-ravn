@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-02-2025 a las 18:41:49
+-- Tiempo de generación: 19-02-2025 a las 07:37:30
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -36,7 +36,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(3);
+(11);
 
 -- --------------------------------------------------------
 
@@ -48,7 +48,7 @@ CREATE TABLE `movie` (
   `id_movie` int(11) NOT NULL,
   `name` int(11) NOT NULL,
   `release_year` int(11) DEFAULT NULL,
-  `synopsis` int(11) DEFAULT NULL,
+  `synopsis` text DEFAULT NULL,
   `image_poster` blob DEFAULT NULL,
   `id_category` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -68,6 +68,16 @@ CREATE TABLE `movie_category` (
   `id_category` int(11) NOT NULL,
   `category_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `movie_category`
+--
+
+INSERT INTO `movie_category` (`id_category`, `category_name`) VALUES
+(7, 'action'),
+(8, 'comedy'),
+(9, 'science fiction'),
+(10, 'Romance');
 
 -- --------------------------------------------------------
 
@@ -158,7 +168,7 @@ ALTER TABLE `movie`
 -- AUTO_INCREMENT de la tabla `movie_category`
 --
 ALTER TABLE `movie_category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
