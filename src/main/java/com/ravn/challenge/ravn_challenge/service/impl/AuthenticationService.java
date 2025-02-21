@@ -49,7 +49,7 @@ public class AuthenticationService {
 		return userRepository.findByUsername(input.getUsername()).orElseThrow();
 	}
 	
-	public boolean checkIfUserIsAdmin() {
+	public User checkIfUserIsAdmin() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         User currentUser = (User) authentication.getPrincipal();
@@ -57,9 +57,9 @@ public class AuthenticationService {
         rol.setId(1);//admin this needs to be changed later
         
         if(currentUser.getRol().getId().equals(rol.getId()))
-        	return true;
+        	return currentUser;
         else 
-        	return false;
+        	return null;
 	}
 
 }

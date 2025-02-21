@@ -38,7 +38,7 @@ public class User implements UserDetails{
     private String password;
 	
 	@OneToOne
-    @JoinColumn(name = "id_rol")	
+    @JoinColumn(name = "id_rol",nullable = false)	
 	private Rol rol;
 	
 	@Override

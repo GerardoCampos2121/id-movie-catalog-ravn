@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2025 a las 07:37:30
+-- Tiempo de generación: 21-02-2025 a las 07:36:14
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -36,7 +36,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(11);
+(14);
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ INSERT INTO `hibernate_sequence` (`next_val`) VALUES
 
 CREATE TABLE `movie` (
   `id_movie` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
   `release_year` int(11) DEFAULT NULL,
   `synopsis` text DEFAULT NULL,
   `image_poster` blob DEFAULT NULL,
@@ -57,6 +57,14 @@ CREATE TABLE `movie` (
   `date_rate` date DEFAULT NULL,
   `rate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `movie`
+--
+
+INSERT INTO `movie` (`id_movie`, `name`, `release_year`, `synopsis`, `image_poster`, `id_category`, `id_user`, `created_date`, `user_rate`, `date_rate`, `rate`) VALUES
+(11, 'Rambo I', 1982, 'El veterano de Vietnam, John Rambo, envuelve a la policía en una cacería en el bosque tras escapar de un vil comisario.', NULL, 7, 2, '2025-02-21', NULL, NULL, NULL),
+(13, 'Titanic', 1997, 'Una joven de la alta sociedad abandona a su arrogante pretendiente por un artista humilde en el trasatlántico que se hundió durante su viaje inaugural', NULL, 10, 2, '2025-02-21', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -77,7 +85,8 @@ INSERT INTO `movie_category` (`id_category`, `category_name`) VALUES
 (7, 'action'),
 (8, 'comedy'),
 (9, 'science fiction'),
-(10, 'Romance');
+(10, 'Romance'),
+(12, 'Drama');
 
 -- --------------------------------------------------------
 
@@ -162,13 +171,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `movie_category`
 --
 ALTER TABLE `movie_category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

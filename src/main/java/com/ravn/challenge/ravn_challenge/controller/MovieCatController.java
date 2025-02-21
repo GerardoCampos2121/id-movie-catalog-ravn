@@ -5,45 +5,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.ravn.challenge.ravn_challenge.dto.MovieCategoryDTO;
-import com.ravn.challenge.ravn_challenge.dto.MovieDTO;
-import com.ravn.challenge.ravn_challenge.entities.Movie;
 import com.ravn.challenge.ravn_challenge.entities.MovieCategory;
 import com.ravn.challenge.ravn_challenge.entities.User;
 import com.ravn.challenge.ravn_challenge.service.impl.AuthenticationService;
 import com.ravn.challenge.ravn_challenge.service.impl.MovieCategoryService;
-import com.ravn.challenge.ravn_challenge.service.impl.MovieService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/movie")
+@RequestMapping("/categorymovie")
 @RestController
 @Slf4j
-public class MoviesController {
+public class MovieCatController {
 	
-	private final MovieService movieService;
-
 	private final MovieCategoryService movieCatService;
-
+	
 	private final AuthenticationService authenticationService;
-
-	public MoviesController(MovieService movieService,MovieCategoryService movieCatService, AuthenticationService authenticationService) {
-		this.movieService = movieService;
-		this.movieCatService = movieCatService;
+	
+	
+	public MovieCatController(MovieCategoryService movieCatService,AuthenticationService authenticationService) {
 		this.authenticationService = authenticationService;
-	}	
+		this.movieCatService = movieCatService;
+	}
+	
 	
 	@PostMapping("/create")
-	public ResponseEntity<Movie> registerMovie(@RequestBody MovieDTO input){
-		User currentUser = authenticationService.checkIfUserIsAdmin();		
+    public ResponseEntity<MovieCategory> registerMovieCat(@RequestBody MovieCategoryDTO input) {
 		
+		User currentUser = authenticationService.checkIfUserIsAdmin();
 		if(currentUser != null) {
-		Movie newMovie = movieService.saveMovieOnDB(input,currentUser);
-		return ResponseEntity.ok(newMovie);
+			MovieCategory saveMovCat = movieCatService.saveOnDB(input);
+			return ResponseEntity.ok(saveMovCat);
 		}else {
 			return ResponseEntity.status(403).body(null);
 		}
-		
 	}
 
 }
