@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "e2d26509-778c-41aa-af44-48d6034b776f",
+		"name": "RavnChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42439771"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Luis\",\r\n    \"lastname\":\"Martinez\",\r\n    \"username\": \"lamartinez@gmail.com\",\r\n    \"password\": \"PassW0rd$\",\r\n    \"idRol\" : \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"rosalesabigail267@gmail.com\",\r\n    \"password\":\"N3wP4$s1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "registerMovieCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAxMTg5MjMsImV4cCI6MTc0MDEyMjUyM30.ZtbobJMp96g0WuOjVVuoYHh76l6W-XJd7SrGntzM9WQ"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieCategory\":\"Drama\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/categorymovie/create"
+			},
+			"response": []
+		},
+		{
+			"name": "registerMovie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAxMTg5MjMsImV4cCI6MTc0MDEyMjUyM30.ZtbobJMp96g0WuOjVVuoYHh76l6W-XJd7SrGntzM9WQ"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Titanic\",\r\n    \"releaseYear\" : 1997,\r\n    \"synopsis\": \"Una joven de la alta sociedad abandona a su arrogante pretendiente por un artista humilde en el trasatlántico que se hundió durante su viaje inaugural\",\r\n    \"image\": null,\r\n    \"idCategory\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/movie/create"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,5 +1,6 @@
 package com.ravn.challenge.ravn_challenge.service.impl;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import com.ravn.challenge.ravn_challenge.dto.LoginUserDto;
 import com.ravn.challenge.ravn_challenge.dto.RegisterUserDto;
 import com.ravn.challenge.ravn_challenge.entities.Rol;
 import com.ravn.challenge.ravn_challenge.entities.User;
+import com.ravn.challenge.ravn_challenge.exception.AppException;
 import com.ravn.challenge.ravn_challenge.repositories.UserRepository;
 
 @Service
@@ -43,23 +45,34 @@ public class AuthenticationService {
 	}
 
 	public User authenticate(LoginUserDto input) {
+
+		if (input != null) {
+			if (input.getUsername() == null || input.getUsername().isEmpty()) {
+				throw new AppException("username cannot be null or empty", HttpStatus.BAD_REQUEST, "400",
+						"username required");
+			} else if (input.getPassword() == null || input.getPassword().isEmpty()) {
+				throw new AppException("password cannot be null or empty", HttpStatus.BAD_REQUEST, "400",
+						"password required");
+			}
+		}
+
 		authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(input.getUsername(), input.getPassword()));
-
 		return userRepository.findByUsername(input.getUsername()).orElseThrow();
+
 	}
-	
+
 	public User checkIfUserIsAdmin() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        User currentUser = (User) authentication.getPrincipal();
-        Rol rol = new Rol();
-        rol.setId(1);//admin this needs to be changed later
-        
-        if(currentUser.getRol().getId().equals(rol.getId()))
-        	return currentUser;
-        else 
-        	return null;
+		User currentUser = (User) authentication.getPrincipal();
+		Rol rol = new Rol();
+		rol.setId(1);// admin this needs to be changed later
+
+		if (currentUser.getRol().getId().equals(rol.getId()))
+			return currentUser;
+		else
+			return null;
 	}
 
 }
