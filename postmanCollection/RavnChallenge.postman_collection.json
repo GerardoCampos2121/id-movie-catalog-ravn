@@ -78,14 +78,14 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAxMTg5MjMsImV4cCI6MTc0MDEyMjUyM30.ZtbobJMp96g0WuOjVVuoYHh76l6W-XJd7SrGntzM9WQ"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Titanic\",\r\n    \"releaseYear\" : 1997,\r\n    \"synopsis\": \"Una joven de la alta sociedad abandona a su arrogante pretendiente por un artista humilde en el trasatlántico que se hundió durante su viaje inaugural\",\r\n    \"image\": null,\r\n    \"idCategory\": 10\r\n}",
+					"raw": "{\r\n    \"name\":\"Mi primer beso\",\r\n    \"releaseYear\" : 2000,\r\n    \"synopsis\": \"A woman gets kissed by first time\",\r\n    \"image\": null,\r\n    \"idCategory\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -93,6 +93,60 @@
 					}
 				},
 				"url": "http://localhost:8080/moviechallenge/movie/create"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRatedMovies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAzNDk4MTQsImV4cCI6MTc0MDM1MzQxNH0.TM2Xlzm7jIgn6cjGc_zbvmVjcQdMTP7DwVlsbLWa1dI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/moviechallenge/movie/allRatedMovies"
+			},
+			"response": []
+		},
+		{
+			"name": "registerMovie Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Mi primer beso\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/movie/rateMovie/16"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/moviechallenge/movie/delete/15"
 			},
 			"response": []
 		}
