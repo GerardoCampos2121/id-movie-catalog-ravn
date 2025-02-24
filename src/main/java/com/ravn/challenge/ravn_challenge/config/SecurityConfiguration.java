@@ -22,6 +22,13 @@ public class SecurityConfiguration {
 
 	private final AuthenticationProvider authenticationProvider;
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private static final String[] SWAGGER_URLS = {
+			// -- swagger ui
+			"/swagger-resources/**",
+			"/swagger-ui.html",
+			"/v2/api-docs",
+			"/webjars/**"
+			};
 
 	public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter,
 			AuthenticationProvider authenticationProvider) {
@@ -31,7 +38,13 @@ public class SecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeHttpRequests().antMatchers("/auth/**").permitAll().anyRequest()
+		http.csrf().disable().authorizeHttpRequests().antMatchers(
+				"/auth/**",
+				// -- swagger ui
+				"/swagger-resources/**",
+				"/swagger-ui.html",
+				"/v2/api-docs",
+				"/webjars/**").permitAll().anyRequest()
 				.authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,6 +1,12 @@
 package com.ravn.challenge.ravn_challenge.controller;
 
+
+
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +15,13 @@ import com.ravn.challenge.ravn_challenge.dto.LoginResponseDTO;
 import com.ravn.challenge.ravn_challenge.dto.LoginUserDto;
 import com.ravn.challenge.ravn_challenge.dto.RegisterUserDto;
 import com.ravn.challenge.ravn_challenge.entities.User;
+import com.ravn.challenge.ravn_challenge.exception.AppException;
 import com.ravn.challenge.ravn_challenge.service.impl.AuthenticationService;
 import com.ravn.challenge.ravn_challenge.service.impl.JwtService;
+import com.ravn.challenge.ravn_challenge.util.Validation;
 
+
+@Validated
 @RequestMapping("/auth")
 @RestController
 public class UserController {
@@ -26,7 +36,12 @@ public class UserController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+	public ResponseEntity<User> register(@Valid @RequestBody RegisterUserDto registerUserDto) {
+		
+		if(registerUserDto.getUsername() == null || !Validation.validate(registerUserDto.getUsername())) {
+			throw new AppException("Please enter a valid email",HttpStatus.BAD_REQUEST,"400","email");			
+		}
+		
 		User registeredUser = authenticationService.signup(registerUserDto);
 
 		return ResponseEntity.ok(registeredUser);
@@ -34,6 +49,11 @@ public class UserController {
 
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponseDTO> authenticate(@RequestBody LoginUserDto loginUserDto) {
+		
+		if(loginUserDto.getUsername() == null || !Validation.validate(loginUserDto.getUsername())) {
+			throw new AppException("Please enter a valid email",HttpStatus.BAD_REQUEST,"400","email");			
+		}
+		
 		User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
 		String jwtToken = jwtService.generateToken(authenticatedUser);

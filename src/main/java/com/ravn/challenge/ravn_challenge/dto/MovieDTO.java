@@ -1,7 +1,16 @@
 package com.ravn.challenge.ravn_challenge.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import lombok.Data;
+
+
+@Data
 public class MovieDTO {
 	
+	@NotEmpty(message = "Name of Movie is required.")	
 	private String name;
 	
 	private Integer releaseYear;
@@ -10,6 +19,8 @@ public class MovieDTO {
 	
 	private String image;
 	
+	@NotNull(message = "The idCategory required.")
+	@Positive(message = "The idCategory must be greater than 0")
 	private Integer idCategory;	
 	
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2025 a las 07:36:14
+-- Tiempo de generación: 24-02-2025 a las 06:48:30
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -36,7 +36,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(14);
+(19);
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,8 @@ CREATE TABLE `movie` (
 
 INSERT INTO `movie` (`id_movie`, `name`, `release_year`, `synopsis`, `image_poster`, `id_category`, `id_user`, `created_date`, `user_rate`, `date_rate`, `rate`) VALUES
 (11, 'Rambo I', 1982, 'El veterano de Vietnam, John Rambo, envuelve a la policía en una cacería en el bosque tras escapar de un vil comisario.', NULL, 7, 2, '2025-02-21', NULL, NULL, NULL),
-(13, 'Titanic', 1997, 'Una joven de la alta sociedad abandona a su arrogante pretendiente por un artista humilde en el trasatlántico que se hundió durante su viaje inaugural', NULL, 10, 2, '2025-02-21', NULL, NULL, NULL);
+(13, 'Titanic', 1997, 'Una joven de la alta sociedad abandona a su arrogante pretendiente por un artista humilde en el trasatlántico que se hundió durante su viaje inaugural', NULL, 10, 2, '2025-02-21', NULL, NULL, NULL),
+(16, 'Mi primer beso', 2000, 'A woman gets kissed by first time', NULL, 10, 2, '2025-02-22', 2, '2025-02-22', 'Excellent Movie');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `name`, `lastname`, `username`, `password`, `id_rol`) VALUES
 (1, 'Gerardo', 'Campos', 'gerardocampos2112@gmail.com', '$2a$10$BAbM8tIaMMaU3DOkmXcpteK1GD6aXwPvvniyET3AQpyfZcX.0hvHW', 1),
-(2, 'Abigail', 'Juarez', 'rosalesabigail267@gmail.com', '$2a$10$/bEZm4XaFcLI535lljXDR.FvErJtinou5M3UbbfAeoq6WfkTMdjiC', 1);
+(2, 'Abigail', 'Juarez', 'rosalesabigail267@gmail.com', '$2a$10$/bEZm4XaFcLI535lljXDR.FvErJtinou5M3UbbfAeoq6WfkTMdjiC', 1),
+(14, 'Luis', 'Martinez', 'lamartinez@gmail.com', '$2a$10$TtTRdT9nRXk.B.RPMkj/X.8v.V3DbJuySFnhkyeRMAf.b0uNSDlGK', 1),
+(17, 'Melissa', 'Campos', 'mcampos25@gmail.com', '$2a$10$btQEzGy2JcqFBaPgLIROTO/zIidKfj75DD6sJTqFeQCLI909M7DtG', 2),
+(18, 'Maria', 'Juarez', 'mjuarez25@gmail.com', '$2a$10$q9GNAXGiuYxTOFR371ywve1Dh1.CiuGFfMXf5rDuCZ5cGwj7316OS', 2);
 
 --
 -- Índices para tablas volcadas
@@ -171,7 +175,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `movie_category`
@@ -189,7 +193,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas

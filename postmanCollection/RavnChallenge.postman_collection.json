@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Luis\",\r\n    \"lastname\":\"Martinez\",\r\n    \"username\": \"lamartinez@gmail.com\",\r\n    \"password\": \"PassW0rd$\",\r\n    \"idRol\" : \"1\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Oscar\",\r\n    \"lastname\": \"Flores\",\r\n    \"username\": \"oflores25@gmail.com\",\r\n    \"password\": \"Cl4v325$\",\r\n    \"idRol\" : \"2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,7 +61,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"movieCategory\":\"Drama\"\r\n}",
+					"raw": "{\r\n    \"movieCategory\":\"Horror\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -112,7 +112,7 @@
 			"response": []
 		},
 		{
-			"name": "registerMovie Copy",
+			"name": "rateMovie",
 			"request": {
 				"auth": {
 					"type": "bearer",

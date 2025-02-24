@@ -1,7 +1,6 @@
 package com.ravn.challenge.ravn_challenge.dto;
 
-
-public class ResponseDTO {/*
+public class FormatErrorDTO {
 	
 	private String code = null;
 	private String reason = null;
@@ -52,6 +51,5 @@ public class ResponseDTO {/*
 		
 		return sb.toString();
 	}
-			
-*/
+
 }

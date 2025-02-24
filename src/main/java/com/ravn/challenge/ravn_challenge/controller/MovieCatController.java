@@ -1,6 +1,9 @@
 package com.ravn.challenge.ravn_challenge.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,8 @@ import com.ravn.challenge.ravn_challenge.service.impl.MovieCategoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
+@Validated
 @RequestMapping("/categorymovie")
 @RestController
 @Slf4j
@@ -31,7 +36,7 @@ public class MovieCatController {
 	
 	
 	@PostMapping("/create")
-    public ResponseEntity<MovieCategory> registerMovieCat(@RequestBody MovieCategoryDTO input) {
+    public ResponseEntity<MovieCategory> registerMovieCat(@Valid @RequestBody MovieCategoryDTO input) {
 		
 		User currentUser = authenticationService.checkIfUserIsAdmin();
 		if(currentUser != null) {

@@ -1,15 +1,32 @@
 package com.ravn.challenge.ravn_challenge.dto;
 
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern.Flag;
+import javax.validation.constraints.Positive;
+
+import lombok.Data;
+
+@Data
 public class RegisterUserDto {
 
+	@NotEmpty(message = "Username is required.")
+	@Email(message = "The email address is invalid.", flags = { Flag.CASE_INSENSITIVE })
 	private String username;
 
+	@NotEmpty(message = "Password is required.")
 	private String password;
-
+	
+	@NotEmpty(message = "name is required.")	
 	private String name;
 	
+	@NotEmpty(message = "lastname is required.")
 	private String lastname;
-
+	
+	@NotNull(message = "The idRol required.")
+	@Positive(message = "The idRol must be greater than 0")
 	private Integer idRol;
 
 	public String getUsername() {
