@@ -72,6 +72,19 @@ public class MovieService {
 		return movieRepository.save(updateMovie);
 	}
 
+	public void removeRateMovie(Integer idMovie, User currentUser) {
+
+		Movie updateMovie = movieRepository.findRatedMovie(idMovie, currentUser.getId());
+		if (updateMovie == null) {
+			throw new AppException("The idMovie doesn't belongs to a record on Movie or Movie was not rated by you!",
+					HttpStatus.BAD_REQUEST, "400", "error rating Movie");
+		}
+		updateMovie.setUserRate(null);
+		updateMovie.setDateRate(null);
+		updateMovie.setRate(null);
+		movieRepository.save(updateMovie);
+	}
+
 	public void deleteMovie(Integer idMovie) {
 
 		Movie deleteMovie = movieRepository.findById(idMovie).get();

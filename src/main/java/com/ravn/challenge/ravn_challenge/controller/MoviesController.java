@@ -96,6 +96,23 @@ public class MoviesController {
 		return ResponseEntity.ok(response);	
 		
 	}
+	
+	@PatchMapping("/removeRateMovie/{idMovie}")
+	public ResponseEntity<ResponseDTO> removeRateMovie(@PathVariable("idMovie") Integer idMovie) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		User currentUser = (User) authentication.getPrincipal();
+
+				
+		movieService.removeRateMovie(idMovie,currentUser);
+		
+		ResponseDTO response = new ResponseDTO();
+		response.setCode("200");
+		response.setMessage("Rate was removed with success!");
+		return ResponseEntity.ok(response);	
+	}
+	
 
 	@GetMapping("allRatedMovies")
 	public List<RatedMovieDTO> getAllRatedMovies() {

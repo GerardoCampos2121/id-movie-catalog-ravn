@@ -19,6 +19,9 @@ public interface MovieRepository extends CrudRepository<Movie, Integer>{
 	@Query(value = "Select * from Movie where user_rate = :userRate order by name asc", nativeQuery = true)
 	List<Movie> findByUserRate(Integer userRate);
 	
+	@Query(value = "Select * from Movie where id_movie = :idMovie and user_rate = :userRate", nativeQuery = true)
+	Movie findRatedMovie(Integer idMovie,Integer userRate);
+	
 	@Query(value = "Select * from Movie where name like ':name %' and synopsis like ':synopsis %'", nativeQuery = true)
 	List<Movie> dynamicSearchMovies(String name,String synopsis,Pageable pageable);
 	

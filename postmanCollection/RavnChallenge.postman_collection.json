@@ -145,6 +145,21 @@
 			"response": []
 		},
 		{
+			"name": "remove Rate Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ2Mjk4MiwiZXhwIjoxNzQwNDY2NTgyfQ.UTyteY6-_uacUFe6iJRBQLRR0Nc7QTzh-X1p8yjTQZI"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": "http://localhost:8080/moviechallenge/movie/removeRateMovie/22"
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Movie",
 			"request": {
 				"auth": {
@@ -165,7 +180,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ2Mjk4MiwiZXhwIjoxNzQwNDY2NTgyfQ.UTyteY6-_uacUFe6iJRBQLRR0Nc7QTzh-X1p8yjTQZI"
 					}
 				},
 				"method": "GET",
