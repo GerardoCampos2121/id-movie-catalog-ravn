@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Oscar\",\r\n    \"lastname\": \"Flores\",\r\n    \"username\": \"oflores25@gmail.com\",\r\n    \"password\": \"Cl4v325$\",\r\n    \"idRol\" : \"2\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Victor\",\r\n    \"lastname\": \"Perez\",\r\n    \"username\": \"vperez25@gmail.com\",\r\n    \"password\": \"Cl4v325$\",\r\n    \"idRol\" : \"2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,7 +37,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"rosalesabigail267@gmail.com\",\r\n    \"password\":\"N3wP4$s1\"\r\n}",
+					"raw": "{\r\n    \"username\":\"lamartinez@gmail.com\",\r\n    \"password\":\"PassW0rd$\"\r\n}\r\n/* More user and pass\r\n\"username\": \"rosalesabigail267@gmail.com\",\r\n\"password\": \"N3wP4$s1\",\r\n\r\n\"username\": \"lamartinez@gmail.com\",\r\n\"password\": \"PassW0rd$\",\r\n\r\n\"username\": \"mcampos25@gmail.com\",\r\n\"password\": \"Cl4v325$\",\r\n\r\n\"username\": \"mjuarez25@gmail.com\",\r\n\"password\": \"Cl4v325$\",\r\n\t\r\n\"username\": \"vperez25@gmail.com\",\r\n\"password\": \"Cl4v325$\"\r\n*/",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -78,14 +78,14 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Mi primer beso\",\r\n    \"releaseYear\" : 2000,\r\n    \"synopsis\": \"A woman gets kissed by first time\",\r\n    \"image\": null,\r\n    \"idCategory\": 10\r\n}",
+					"raw": "{    \r\n    \"name\":\"this MOvie will be deleted!\",\r\n    \"releaseYear\" : 2005,\r\n    \"synopsis\": \"this movie is related to yellow kids, first version\",\r\n    \"image\": null,\r\n    \"idCategory\": 8\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,17 +97,26 @@
 			"response": []
 		},
 		{
-			"name": "getAllRatedMovies",
+			"name": "updateMovie",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAzNDk4MTQsImV4cCI6MTc0MDM1MzQxNH0.TM2Xlzm7jIgn6cjGc_zbvmVjcQdMTP7DwVlsbLWa1dI"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
 					}
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": "http://localhost:8080/moviechallenge/movie/allRatedMovies"
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"name\":\"Mi villano favorito 1: First Adventure!\",\r\n    \"releaseYear\" : 2007,\r\n    \"synopsis\": \"this movie is related to yellow kids, first version called first adventure!\",\r\n    \"image\": null,\r\n    \"idCategory\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/movie/update/22"
 			},
 			"response": []
 		},
@@ -117,21 +126,21 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
 					}
 				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Mi primer beso\"\r\n   \r\n}",
+					"raw": "{\r\n    \"rate\":\"This movie was really amazing! Better than first.\"   \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/moviechallenge/movie/rateMovie/16"
+				"url": "http://localhost:8080/moviechallenge/movie/rateMovie/21"
 			},
 			"response": []
 		},
@@ -141,12 +150,51 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAyNDUyMTcsImV4cCI6MTc0MDI0ODgxN30.D86XUiFZAcyoJs5RmU9B6Yjvq-GjXXu1MHc-PGShjqU"
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
 					}
 				},
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/moviechallenge/movie/delete/15"
+				"url": "http://localhost:8080/moviechallenge/movie/delete/23"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRatedMovies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW1hcnRpbmV6QGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1ODE0NCwiZXhwIjoxNzQwNDYxNzQ0fQ.fWCwOolAFwKnISSc2qcEiIGY_Og1ctV8k8puWizX3p0"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/moviechallenge/movie/allRatedMovies"
+			},
+			"response": []
+		},
+		{
+			"name": "searchMovies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NhbGVzYWJpZ2FpbDI2N0BnbWFpbC5jb20iLCJpYXQiOjE3NDAzNDk4MTQsImV4cCI6MTc0MDM1MzQxNH0.TM2Xlzm7jIgn6cjGc_zbvmVjcQdMTP7DwVlsbLWa1dI"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tita\",\r\n    \"synopsis\":\"Una Joven\",\r\n    \"moviesPerPage\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/moviechallenge/movie/searchMovies"
 			},
 			"response": []
 		}

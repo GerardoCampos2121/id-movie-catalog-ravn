@@ -56,23 +56,38 @@ public class AuthenticationService {
 			}
 		}
 
-		authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(input.getUsername(), input.getPassword()));
-		return userRepository.findByUsername(input.getUsername()).orElseThrow();
+		try {
 
-	}
+			authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(input.getUsername(), input.getPassword()));
+			return userRepository.findByUsername(input.getUsername()).orElseThrow();
+
+		} catch (Exception x) {
+			throw new AppException("Error trying to authenticate, try later",HttpStatus.INTERNAL_SERVER_ERROR,"500","authenticate");
+
+		}
+
+	}	
 
 	public User checkIfUserIsAdmin() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
+			User currentUser = (User) authentication.getPrincipal();
+			Rol rol = new Rol();
+			rol.setId(1);// admin this needs to be changed later
 
-		User currentUser = (User) authentication.getPrincipal();
-		Rol rol = new Rol();
-		rol.setId(1);// admin this needs to be changed later
+			if (currentUser.getRol().getId().equals(rol.getId()))
+				return currentUser;
+			else
+				return null;
+			
+		}catch(Exception x) {
+			throw new AppException("No valid token",HttpStatus.BAD_REQUEST,String.valueOf(HttpStatus.BAD_REQUEST.value()),"token");
+			
+		}
 
-		if (currentUser.getRol().getId().equals(rol.getId()))
-			return currentUser;
-		else
-			return null;
 	}
 
 }

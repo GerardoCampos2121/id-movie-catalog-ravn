@@ -1,5 +1,6 @@
 package com.ravn.challenge.ravn_challenge.filter;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ravn.challenge.ravn_challenge.exception.AppException;
 import com.ravn.challenge.ravn_challenge.service.impl.JwtService;
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -72,8 +77,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
+        	
             handlerExceptionResolver.resolveException(request, response, null, exception);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            //response.getWriter().write(convertObjectToJson(new AppException("Token is expired or invalid",HttpStatus.BAD_REQUEST,"400","invalid token")));
         }
+    }
+    
+    public String convertObjectToJson(Object object) throws JsonProcessingException {
+        if (object == null) {
+            return null;
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(object);
     }
 
 }

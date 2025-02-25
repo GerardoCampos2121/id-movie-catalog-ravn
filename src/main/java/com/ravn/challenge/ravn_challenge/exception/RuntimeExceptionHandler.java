@@ -10,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
-
 import com.ravn.challenge.ravn_challenge.dto.FormatErrorDTO;
+import io.jsonwebtoken.ExpiredJwtException;
 
 
 
@@ -64,6 +63,35 @@ public class RuntimeExceptionHandler{
 		
 		ResponseEntity<Object> response = new ResponseEntity<>(error,new HttpHeaders(),HttpStatus.BAD_REQUEST);
 		return response;
+	}
+	
+	@ExceptionHandler(ExpiredJwtException.class)
+	public ResponseEntity<Object> handleExpiredToken(ExpiredJwtException ex, HttpServletRequest request){
+		
+		FormatErrorDTO error = new FormatErrorDTO();
+		error.setCode(String.valueOf(HttpStatus.BAD_REQUEST.value()));
+		error.setMessage("Token is not valid or is empty or expired");
+		error.setReason("Invalid token");
+		error.setStatus(HttpStatus.BAD_REQUEST.name());
+		
+		
+		ResponseEntity<Object> response = new ResponseEntity<>(error,new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		return response;
+
+	}
+	
+	@ExceptionHandler(MissingPathVariableException.class)
+	public ResponseEntity<Object> handleExpiredToken(MissingPathVariableException ex, HttpServletRequest request){
+		FormatErrorDTO error = new FormatErrorDTO();
+		error.setCode(String.valueOf(HttpStatus.BAD_REQUEST.value()));
+		error.setMessage("Path parameter to find Movie is required!");
+		error.setReason("Invalid id Movie");
+		error.setStatus(HttpStatus.BAD_REQUEST.name());
+		
+		
+		ResponseEntity<Object> response = new ResponseEntity<>(error,new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		return response;
+		
 	}
 	
 

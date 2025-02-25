@@ -3,6 +3,7 @@ package com.ravn.challenge.ravn_challenge.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,9 @@ public interface MovieRepository extends CrudRepository<Movie, Integer>{
 	
 	@Query(value = "Select * from Movie where user_rate = :userRate order by name asc", nativeQuery = true)
 	List<Movie> findByUserRate(Integer userRate);
+	
+	@Query(value = "Select * from Movie where name like ':name %' and synopsis like ':synopsis %'", nativeQuery = true)
+	List<Movie> dynamicSearchMovies(String name,String synopsis,Pageable pageable);
 	
 
 
